@@ -3,12 +3,16 @@ import {
   SET_KOTA_ASAL,
   SET_KOTA_TUJUAN,
   SET_ONGKIR,
+  SET_LOADING,
+  SET_MESSAGE,
 } from "../types";
 const inititalState = {
   provinsi: [],
   kotaAsal: [],
   kotaTujuan: [],
-  ongkir: [],
+  ongkir: {},
+  loading: false,
+  messages: {},
 };
 const reduxOngkir = (state = inititalState, action) => {
   switch (action.type) {
@@ -20,6 +24,10 @@ const reduxOngkir = (state = inititalState, action) => {
       return { ...state, kotaTujuan: action.payload };
     case SET_ONGKIR:
       return { ...state, ongkir: action.payload };
+    case SET_LOADING:
+      return { ...state, loading: action.payload };
+    case SET_MESSAGE:
+      return { ...state, messages: action.payload };
     default:
       return state;
   }

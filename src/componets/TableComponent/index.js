@@ -1,58 +1,59 @@
 import React from "react";
 import { Table } from "antd";
 import getColumnSearch from "./getColumnSearch";
-const TableComponent = () => {
-  const data = [
-    {
-      key: "1",
-      name: "John Brown",
-      age: 32,
-      address: "New York No. 1 Lake Park",
-    },
-    {
-      key: "2",
-      name: "Joe Black",
-      age: 42,
-      address: "London No. 1 Lake Park",
-    },
-    {
-      key: "3",
-      name: "Jim Green",
-      age: 32,
-      address: "Sidney No. 1 Lake Park",
-    },
-    {
-      key: "4",
-      name: "Jim Red",
-      age: 32,
-      address: "London No. 2 Lake Park",
-    },
-  ];
+
+const TableComponent = (props) => {
+  const { dataTable } = props;
+
   const columns = [
     {
-      title: "Nama Ekspedisi",
-      dataIndex: "name",
-      key: "name",
-      width: "30%",
-      ...getColumnSearch("name", "cari nama"),
+      title: "Nama Service",
+      dataIndex: "service",
+      key: "service",
+
+      ...getColumnSearch("service", "cari nama"),
+      render: (text, source) => {
+        console.log(source);
+        return `${source.service} (${source.description})`;
+      },
     },
     {
       title: "Jangka Waktu",
-      dataIndex: "age",
-      key: "age",
-      width: "20%",
-      ...getColumnSearch("age", "cari umur"),
+      dataIndex: "cost",
+      key: "cost",
+      render: (text, source) => {
+        return (
+          <>
+            {source?.cost.map((items) => {
+              if (items.etd.toLowerCase().includes("hari")) {
+                return `${items.etd.toLowerCase()}`;
+              } else {
+                return `${items.etd} hari`;
+              }
+            })}
+          </>
+        );
+      },
     },
     {
-      title: "Price",
-      dataIndex: "address",
-      key: "address",
-      ...getColumnSearch("address", "cari alamat"),
-      sorter: (a, b) => a.address.length - b.address.length,
-      sortDirections: ["descend", "ascend"],
+      title: "Harga",
+      dataIndex: "cost",
+      key: "cost",
+      render: (text, source) => {
+        return (
+          <>
+            {source?.cost.map((items) => {
+              return `Rp. ${dataTable[0]?.weight * items.value}`.replace(
+                /\B(?=(\d{3})+(?!\d))/g,
+                ","
+              );
+            })}
+          </>
+        );
+      },
     },
   ];
-  return <Table columns={columns} dataSource={data} />;
+  return <Table columns={columns} dataSource={dataTable[0]?.cost} />;
 };
 
 export { TableComponent };

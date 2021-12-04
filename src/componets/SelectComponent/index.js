@@ -14,9 +14,6 @@ function SelectedComponent(props) {
       placeholder={PlaceHolder || "Masukan Inputanmu"}
       optionFilterProp="children"
       onChange={(e) => setValue(e)}
-      filterOption={(input, option) =>
-        option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-      }
     >
       {arrayData?.map((items, index) => {
         if (arrayCase === "provinci") {
