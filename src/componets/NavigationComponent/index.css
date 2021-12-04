@@ -1,0 +1,25 @@
+.actived {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-weight: bold !important;
+}
+.logoTag_Nav a {
+  font-weight: bold;
+  text-decoration: none;
+  color: #3490de;
+}
+.nav_link {
+  font-weight: 400;
+}
+.btn_login {
+  padding: 5px 30px;
+  border-radius: 10px;
+  border: none;
+  background: #63b3f8;
+  color: #fff;
+  font-weight: 600;
+}
+.btn_login:hover {
+  background: #2c9bfd;
+  transition: 0.5s;
+}
