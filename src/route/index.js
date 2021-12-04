@@ -76,8 +76,6 @@ function useProvideAuth() {
   const [user, setUser] = useState("belum login");
 
   const signin = (cb) => {
-    console.log(cb, "ini cb");
-    console.log(SimpleAuth);
     return SimpleAuth.signin(() => {
       setUser("sudah login");
       cb();

@@ -13,7 +13,6 @@ const TableComponent = (props) => {
 
       ...getColumnSearch("service", "cari nama"),
       render: (text, source) => {
-        console.log(source);
         return `${source.service} (${source.description})`;
       },
     },

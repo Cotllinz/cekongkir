@@ -65,7 +65,6 @@ const HomePage = (props) => {
   }, [idProvinciTujuan]);
 
   useEffect(() => {
-    console.log(messages);
     if (Object.keys(messages).length > 0) {
       openNotification({
         type: messages.type,
